@@ -122,78 +122,145 @@
             </ul>
 
             <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Switch Statement</h3>
-            <pre><code><span class="keyword">put</span> <span class="string">"banana"</span> <span class="keyword">into</span> fruit
+            <pre><code><span class="keyword">put</span> <span class="string">"banana"</span> into fruit
 
-<span class="keyword">switch</span> fruit
-    <span class="keyword">case</span> <span class="string">"apple"</span>
-        <span class="function">Log</span> <span class="string">"It's an apple."</span>
-    <span class="keyword">case</span> <span class="string">"banana"</span>
-        <span class="function">Log</span> <span class="string">"It's a banana."</span>
-    <span class="keyword">case</span> <span class="string">"cherry"</span>
-        <span class="function">Log</span> <span class="string">"It's a cherry."</span>
-    <span class="keyword">default</span>
-        <span class="function">Log</span> <span class="string">"It's an unknown fruit."</span>
-<span class="keyword">end switch</span></code></pre>
+switch fruit
+case “apple”
+Log “It’s an apple.”
+case “banana”
+Log “It’s a banana.”
+case “cherry”
+Log “It’s a cherry.”
+default
+Log “It’s an unknown fruit.”
+end switch
 
-            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
-            <ul class="list-disc pl-6 mb-4">
-                <li><code>switch</code> statement: Evaluates the value of <code>fruit</code> and runs the corresponding <code>case</code> block.</li>
-                <li><code>default</code> case: Runs if none of the specified cases match the value of <code>fruit</code>.</li>
-            </ul>
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+        <ul class="list-disc pl-6 mb-4">
+            <li><code>switch</code> statement: Evaluates the value of <code>fruit</code> and runs the corresponding <code>case</code> block.</li>
+            <li><code>default</code> case: Runs if none of the specified cases match the value of <code>fruit</code>.</li>
+        </ul>
 
-            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Loops</h3>
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Loops</h3>
 
-            <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Repeat with Each Loop:</h4>
-            <pre><code><span class="keyword">put</span> (<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>) <span class="keyword">into</span> fruitList
+        <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Repeat with Each Loop:</h4>
+        <pre><code><span class="keyword">put</span> (<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>) <span class="keyword">into</span> fruitList
 
-<span class="keyword">repeat with each</span> fruit <span class="keyword">in</span> fruitList
-    <span class="function">Log</span> <span class="string">"Fruit: "</span> & fruit
-<span class="keyword">end repeat</span></code></pre>
+repeat with each fruit in fruitList
+Log “Fruit: “ & fruit
+end repeat
 
-            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
-            <ul class="list-disc pl-6 mb-4">
-                <li><code>repeat with each</code>: This loop iterates over each item in <code>fruitList</code> and logs it.</li>
-            </ul>
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+        <ul class="list-disc pl-6 mb-4">
+            <li><code>repeat with each</code>: This loop iterates over each item in <code>fruitList</code> and logs it.</li>
+        </ul>
 
-            <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Repeat with a Condition:</h4>
-            <pre><code><span class="keyword">put</span> <span class="number">5</span> <span class="keyword">into</span> counter
+        <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Repeat with a Condition:</h4>
+        <pre><code><span class="keyword">put</span> <span class="number">5</span> <span class="keyword">into</span> counter
 
-<span class="keyword">repeat while</span> counter > <span class="number">0</span>
-    <span class="function">Log</span> <span class="string">"Counter is "</span> & counter
-    <span class="keyword">subtract</span> <span class="number">1</span> <span class="keyword">from</span> counter
-<span class="keyword">end repeat</span></code></pre>
+repeat while counter > 0
+Log “Counter is “ & counter
+subtract 1 from counter
+end repeat
 
-            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
-            <ul class="list-disc pl-6 mb-4">
-                <li><code>repeat while</code>: The loop continues as long as the condition (<code>counter > 0</code>) is true.</li>
-                <li><code>subtract 1 from counter</code>: Decrements the counter by 1 in each iteration.</li>
-            </ul>
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+        <ul class="list-disc pl-6 mb-4">
+            <li><code>repeat while</code>: The loop continues as long as the condition (<code>counter > 0</code>) is true.</li>
+            <li><code>subtract 1 from counter</code>: Decrements the counter by 1 in each iteration.</li>
+        </ul>
 
-            <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Repeat a Fixed Number of Times:</h4>
-            <pre><code><span class="keyword">repeat</span> <span class="number">3</span> <span class="keyword">times</span>
-    <span class="function">Log</span> <span class="string">"This message will be logged three times."</span>
-<span class="keyword">end repeat</span></code></pre>
+        <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Repeat a Fixed Number of Times:</h4>
+        <pre><code><span class="keyword">repeat</span> <span class="number">3</span> <span class="keyword">times</span>
+<span class="function">Log</span> <span class="string">"This message will be logged three times."</span>
 
-            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
-            <ul class="list-disc pl-6 mb-4">
-                <li><code>repeat X times</code>: Repeats the enclosed block of code a fixed number of times.</li>
-            </ul>
-        </div>
+end repeat
 
-        <div class="bg-white shadow-md rounded-lg p-6 mb-8">
-            <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Chapter 4: Advanced Topics</h2>
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+        <ul class="list-disc pl-6 mb-4">
+            <li><code>repeat X times</code>: Repeats the enclosed block of code a fixed number of times.</li>
+        </ul>
+    </div>
 
-            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Image Recognition and Interaction</h3>
+    <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Chapter 4: Advanced Topics</h2>
 
-            <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Clicking on an Image:</h4>
-            <pre><code><span class="comment">// Clicks on the image of a button</span>
-<span class="function">Click</span> <span class="string">"SubmitButton"</span></code></pre>
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Image Recognition and Interaction</h3>
 
-            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
-            <ul class="list-disc pl-6 mb-4">
-                <li><code>Click "SubmitButton"</code>: This command searches for an image named "SubmitButton" and clicks on it. The image should be captured and stored in Eggplant Functional's suite.</li>
-            </ul>
+        <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Clicking on an Image:</h4>
+        <pre><code><span class="comment">// Clicks on the image of a button</span>
 
-            <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Waiting for an Image:</h4>
-            <pre><code><span class="comment">// Waits for up to 15 seconds for the image to appear</span>
-<span class="function">WaitFor</span> <span class="number">15</span>, <span class
+Click “SubmitButton”
+
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+        <ul class="list-disc pl-6 mb-4">
+            <li><code>Click "SubmitButton"</code>: This command searches for an image named "SubmitButton" and clicks on it. The image should be captured and stored in Eggplant Functional's suite.</li>
+        </ul>
+
+        <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Waiting for an Image:</h4>
+        <pre><code><span class="comment">// Waits for up to 15 seconds for the image to appear</span>
+
+WaitFor 15, “LoadingIcon”
+
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+        <ul class="list-disc pl-6 mb-4">
+            <li><code>WaitFor 15, "LoadingIcon"</code>: Pauses the script for up to 15 seconds, waiting for the image "LoadingIcon" to appear on the screen.</li>
+        </ul>
+
+        <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Verifying the Presence of an Image:</h4>
+        <pre><code><span class="comment">// Checks if an image is present on the screen</span>
+
+if ImageFound(“SuccessMessage”)
+Log “Operation completed successfully.”
+else
+LogError “Operation failed.”
+end if
+
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+        <ul class="list-disc pl-6 mb-4">
+            <li><code>ImageFound</code>: This function returns true if the specified image is found on the screen, enabling conditional logic based on the presence of UI elements.</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Working with External Data</h3>
+
+        <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Reading Data from a CSV File:</h4>
+        <pre><code><span class="comment">// Define the file path</span>
+
+set filePath to ”/path/to/data.csv”
+
+// Read the CSV file
+repeat with each record in file filePath
+Log “Record: “ & record
+end repeat
+
+        <h4 class="text-lg font-semibold mt-4 mb-2 text-indigo-400">Using Data in a Test Script:</h4>
+        <pre><code><span class="comment">// Define the file path and read the data</span>
+
+set filePath to ”/path/to/users.csv”
+
+repeat with each user in file filePath
+put user’s username into username
+put user’s password into password
+
+            <span class="comment">// Use the data to perform a login operation</span>
+<span class="function">TypeText</span> username, <span class="keyword">Tab</span>, password, <span class="keyword">Return</span>
+<span class="function">WaitFor</span> <span class="number">5</span>, <span class="string">"Dashboard"</span>
+
+<span class="keyword">if ImageFound</span>(<span class="string">"Dashboard"</span>)
+    <span class="function">Log</span> <span class="string">"Login successful for "</span> & username
+<span class="keyword">else</span>
+    <span class="function">LogError</span> <span class="string">"Login failed for "</span> & username
+<span class="keyword">end if</span>
+
+end repeat
+
+        <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+        <ul class="list-disc pl-6 mb-4">
+            <li><strong>CSV Data:</strong> The script reads usernames and passwords from a CSV file and uses them to perform login operations, verifying the outcome for each user.</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>
+
+            
