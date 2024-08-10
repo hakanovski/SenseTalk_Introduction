@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SenseTalk Tutorial Series</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #e74c3c;
+            background-color: #f9f9f9;
+            padding: 10px;
+            border-left: 10px solid #e74c3c;
+            font-family: 'Arial Black', Gadget, sans-serif;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+            font-family: 'Arial Black', Gadget, sans-serif;
+        }
+        h3 {
+            color: #2ecc71;
+            margin-top: 20px;
+            font-family: 'Arial Black', Gadget, sans-serif;
+        }
+        pre {
+            background-color: #333;
+            color: #f4f4f4;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 4px;
+            border-radius: 3px;
+            color: #e74c3c;
+        }
+        p, ul {
+            margin-bottom: 10px;
+        }
+        ul {
+            margin-left: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Chapter 1: Getting Started with SenseTalk</h2>
+
+    <h3>Setting Up Your Environment</h3>
+    <p>
+        Before writing your first script, ensure that you have Eggplant Functional installed. 
+        This tutorial assumes that you have a basic understanding of how to navigate the Eggplant Functional interface.
+    </p>
+
+    <h3>Your First SenseTalk Script</h3>
+    <pre><code>
+// Open the browser
+Start "Chrome"
+
+// Navigate to a URL
+TypeText "http://www.example.com", Return
+
+// Wait for the page to load
+WaitFor 10, "ExamplePageImage"
+
+// Validate that the correct page has loaded
+If ImageFound("ExamplePageImage")
+    Log "Page loaded successfully!"
+Else
+    LogError "Failed to load the page."
+End If
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>Start "Chrome"</code>: This command launches the Chrome browser.</li>
+        <li><code>TypeText "http://www.example.com", Return</code>: This types the URL into the browser's address bar and presses Enter.</li>
+        <li><code>WaitFor 10, "ExamplePageImage"</code>: Waits up to 10 seconds for a specific image (which you've captured and named "ExamplePageImage") to appear on the screen.</li>
+        <li><code>If ImageFound("ExamplePageImage")</code>: Checks if the expected image is found on the page, logging success or failure accordingly.</li>
+    </ul>
+
+    <h2>Chapter 2: Variables and Data Handling in SenseTalk</h2>
+
+    <h3>Declaring and Using Variables</h3>
+    <pre><code>
+// Declare a variable
+put "Hello, World!" into greeting
+
+// Use the variable
+Log greeting
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>put "Hello, World!" into greeting</code>: This creates a variable named <code>greeting</code> and assigns it the value "Hello, World!".</li>
+        <li><code>Log greeting</code>: This logs the value of <code>greeting</code> to the output.</li>
+    </ul>
+
+    <h3>Working with Lists and Property Lists</h3>
+    <pre><code>
+// Create a list
+put ("apple", "banana", "cherry") into fruitList
+
+// Access an item from the list
+put fruitList's first item into firstFruit
+Log firstFruit
+
+// Create a property list
+put (name:"John", age:30, occupation:"Tester") into person
+
+// Access a property
+Log person’s name
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><strong>Lists:</strong> Ordered collections of items. You can access items using their position in the list.</li>
+        <li><strong>Property Lists:</strong> Collections of key-value pairs, similar to dictionaries in other languages.</li>
+    </ul>
+
+    <h2>Chapter 3: Control Structures in SenseTalk</h2>
+
+    <h3>Conditionals</h3>
+    <pre><code>
+put 10 into number
+
+if number > 5
+    Log "Number is greater than 5"
+else
+    Log "Number is 5 or less"
+end if
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>if number > 5</code>: This checks whether the value stored in <code>number</code> is greater than 5.</li>
+        <li><code>Log</code>: Depending on the condition, either "Number is greater than 5" or "Number is 5 or less" is logged to the console.</li>
+        <li><code>else</code>: This block runs if the <code>if</code> condition is not met.</li>
+    </ul>
+
+    <h3>Switch Statement</h3>
+    <pre><code>
+put "banana" into fruit
+
+switch fruit
+    case "apple"
+        Log "It's an apple."
+    case "banana"
+        Log "It's a banana."
+    case "cherry"
+        Log "It's a cherry."
+    default
+        Log "It's an unknown fruit."
+end switch
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>switch</code> statement: Evaluates the value of <code>fruit</code> and runs the corresponding <code>case</code> block.</li>
+        <li><code>default</code> case: Runs if none of the specified cases match the value of <code>fruit</code>.</li>
+    </ul>
+
+    <h3>Loops</h3>
+
+    <h4>Repeat with Each Loop:</h4>
+    <pre><code>
+put ("apple", "banana", "cherry") into fruitList
+
+repeat with each fruit in fruitList
+    Log "Fruit: " & fruit
+end repeat
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>repeat with each</code>: This loop iterates over each item in <code>fruitList</code> and logs it.</li>
+    </ul>
+
+    <h4>Repeat with a Condition:</h4>
+    <pre><code>
+put 5 into counter
+
+repeat while counter > 0
+    Log "Counter is " & counter
+    subtract 1 from counter
+end repeat
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>repeat while</code>: The loop continues as long as the condition (<code>counter > 0</code>) is true.</li>
+        <li><code>subtract 1 from counter</code>: Decrements the counter by 1 in each iteration.</li>
+    </ul>
+
+    <h4>Repeat a Fixed Number of Times:</h4>
+    <pre><code>
+repeat 3 times
+    Log "This message will be logged three times."
+end repeat
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>repeat X times</code>: Repeats the enclosed block of code a fixed number of times.</li>
+    </ul>
+
+    <h2>Chapter 4: Advanced Topics</h2>
+
+    <h3>Image Recognition and Interaction</h3>
+
+    <h4>Clicking on an Image:</h4>
+    <pre><code>
+// Clicks on the image of a button
+Click "SubmitButton"
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>Click "SubmitButton"</code>: This command searches for an image named "SubmitButton" and clicks on it. The image should be captured and stored in Eggplant Functional’s suite.</li>
+    </ul>
+
+    <h4>Waiting for an Image:</h4>
+    <pre><code>
+// Waits for up to 15 seconds for the image to appear
+WaitFor 15, "LoadingIcon"
+    </code></pre>
+
+    <h3>Explanation:</h3>
+    <ul>
+        <li><code>WaitFor 15, "LoadingIcon"</code>: Pauses the script for up to 15 seconds, waiting for the image “LoadingIcon” to appear on the screen.
+
+
+<h4>Verifying the Presence of an Image:</h4>
+<pre><code>
+
+// Checks if an image is present on the screen
+if ImageFound(“SuccessMessage”)
+Log “Operation completed successfully.”
+else
+LogError “Operation failed.”
+end if
+
+
+<h3>Explanation:</h3>
+<ul>
+    <li><code>ImageFound</code>: This function returns true if the specified image is found on the screen, enabling conditional logic based on the presence of UI elements.</li>
+</ul>
+
+<h3>Working with External Data</h3>
+
+<h4>Reading Data from a CSV File:</h4>
+<pre><code>
+
+// Define the file path
+set filePath to “/path/to/data.csv”
+
+// Read the CSV file
+repeat with each record in file filePath
+Log “Record: “ & record
+end repeat
+
+
+<h3>Explanation:</h3>
+<ul>
+    <li><code>file filePath</code>: Opens the specified file for reading.</li>
+    <li><code>repeat with each record</code>: Iterates over each line in the CSV file, treating it as a separate record.</li>
+</ul>
+
+<h4>Using Data in a Test Script:</h4>
+<pre><code>
+
+// Define the file path and read the data
+set filePath to “/path/to/users.csv”
+
+repeat with each user in file filePath
+put user’s username into username
+put user’s password into password
+
+// Use the data to perform a login operation
+TypeText username, Tab, password, Return
+WaitFor 5, "Dashboard"
+
+if ImageFound("Dashboard")
+    Log "Login successful for " & username
+else
+    LogError "Login failed for " & username
+end if
+
+end repeat
+
+
+<h3>Explanation:</h3>
+<ul>
+    <li><strong>CSV Data:</strong> The script reads usernames and passwords from a CSV file and uses them to perform login operations, verifying the outcome for each user.</li>
+</ul>
+
+</body>
+</html>
