@@ -3,285 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SenseTalk Tutorial Series</title>
+    <title>SenseTalk Tutorial Series - Chapters 1 and 2</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f0f0;
-            color: #333;
-            line-height: 1.6;
-            margin: 0;
-            padding: 20px;
-        }
-        h1 {
-            color: #ffffff;
-            background-color: #e74c3c;
-            padding: 15px;
-            border-radius: 5px;
-            font-family: 'Arial Black', Gadget, sans-serif;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-        h2 {
-            color: #ffffff;
-            background-color: #3498db;
-            padding: 10px;
-            border-radius: 5px;
-            font-family: 'Arial Black', Gadget, sans-serif;
-            margin-top: 30px;
-        }
-        h3 {
-            color: #ffffff;
-            background-color: #2ecc71;
-            padding: 8px;
-            border-radius: 5px;
-            font-family: 'Arial Black', Gadget, sans-serif;
-            margin-top: 20px;
         }
         pre {
-            background-color: #333;
-            color: #f4f4f4;
-            padding: 10px;
-            border-radius: 5px;
+            background-color: #1a1a1a;
+            color: #4af626;
+            padding: 1rem;
+            border-radius: 0.5rem;
             overflow-x: auto;
-            margin-bottom: 20px;
         }
         code {
-            background-color: #f4f4f4;
-            padding: 2px 4px;
-            border-radius: 3px;
-            color: #e74c3c;
+            font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
         }
-        p, ul {
-            margin-bottom: 10px;
-        }
-        ul {
-            margin-left: 20px;
-        }
-        a {
-            color: #3498db;
-            text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
+        .comment { color: #75715e; }
+        .keyword { color: #66d9ef; }
+        .string { color: #e6db74; }
+        .number { color: #ae81ff; }
+        .function { color: #a6e22e; }
     </style>
 </head>
-<body>
+<body class="bg-gray-100">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8 text-indigo-700">SenseTalk Tutorial Series</h1>
 
-    <h1>SenseTalk Tutorial Series</h1>
+        <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Chapter 1: Getting Started with SenseTalk</h2>
 
-    <h2>Chapter 1: Getting Started with SenseTalk</h2>
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Setting Up Your Environment</h3>
+            <p class="mb-4">
+                Before writing your first script, ensure that you have Eggplant Functional installed. 
+                This tutorial assumes that you have a basic understanding of how to navigate the Eggplant Functional interface.
+            </p>
 
-    <h3>Setting Up Your Environment</h3>
-    <p>
-        Before writing your first script, ensure that you have Eggplant Functional installed. 
-        This tutorial assumes that you have a basic understanding of how to navigate the Eggplant Functional interface.
-    </p>
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Your First SenseTalk Script</h3>
+            <pre><code><span class="comment">// Open the browser</span>
+<span class="function">Start</span> <span class="string">"Chrome"</span>
 
-    <h3>Your First SenseTalk Script</h3>
-    <pre><code>
-// Open the browser
-Start "Chrome"
+<span class="comment">// Navigate to a URL</span>
+<span class="function">TypeText</span> <span class="string">"http://www.example.com"</span>, <span class="keyword">Return</span>
 
-// Navigate to a URL
-TypeText "http://www.example.com", Return
+<span class="comment">// Wait for the page to load</span>
+<span class="function">WaitFor</span> <span class="number">10</span>, <span class="string">"ExamplePageImage"</span>
 
-// Wait for the page to load
-WaitFor 10, "ExamplePageImage"
+<span class="comment">// Validate that the correct page has loaded</span>
+<span class="keyword">If</span> <span class="function">ImageFound</span>(<span class="string">"ExamplePageImage"</span>)
+    <span class="function">Log</span> <span class="string">"Page loaded successfully!"</span>
+<span class="keyword">Else</span>
+    <span class="function">LogError</span> <span class="string">"Failed to load the page."</span>
+<span class="keyword">End If</span></code></pre>
 
-// Validate that the correct page has loaded
-If ImageFound("ExamplePageImage")
-    Log "Page loaded successfully!"
-Else
-    LogError "Failed to load the page."
-End If
-    </code></pre>
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+            <ul class="list-disc pl-6 mb-4">
+                <li><code>Start "Chrome"</code>: This command launches the Chrome browser.</li>
+                <li><code>TypeText "http://www.example.com", Return</code>: This types the URL into the browser's address bar and presses Enter.</li>
+                <li><code>WaitFor 10, "ExamplePageImage"</code>: Waits up to 10 seconds for a specific image (which you've captured and named "ExamplePageImage") to appear on the screen.</li>
+                <li><code>If ImageFound("ExamplePageImage")</code>: Checks if the expected image is found on the page, logging success or failure accordingly.</li>
+            </ul>
+        </div>
 
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>Start "Chrome"</code>: This command launches the Chrome browser.</li>
-        <li><code>TypeText "http://www.example.com", Return</code>: This types the URL into the browser's address bar and presses Enter.</li>
-        <li><code>WaitFor 10, "ExamplePageImage"</code>: Waits up to 10 seconds for a specific image (which you've captured and named "ExamplePageImage") to appear on the screen.</li>
-        <li><code>If ImageFound("ExamplePageImage")</code>: Checks if the expected image is found on the page, logging success or failure accordingly.</li>
-    </ul>
+        <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Chapter 2: Variables and Data Handling in SenseTalk</h2>
 
-    <h2>Chapter 2: Variables and Data Handling in SenseTalk</h2>
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Declaring and Using Variables</h3>
+            <pre><code><span class="comment">// Declare a variable</span>
+<span class="keyword">put</span> <span class="string">"Hello, World!"</span> <span class="keyword">into</span> greeting
 
-    <h3>Declaring and Using Variables</h3>
-    <pre><code>
-// Declare a variable
-put "Hello, World!" into greeting
+<span class="comment">// Use the variable</span>
+<span class="function">Log</span> greeting</code></pre>
 
-// Use the variable
-Log greeting
-    </code></pre>
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+            <ul class="list-disc pl-6 mb-4">
+                <li><code>put "Hello, World!" into greeting</code>: This creates a variable named <code>greeting</code> and assigns it the value "Hello, World!".</li>
+                <li><code>Log greeting</code>: This logs the value of <code>greeting</code> to the output.</li>
+            </ul>
 
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>put "Hello, World!" into greeting</code>: This creates a variable named <code>greeting</code> and assigns it the value "Hello, World!".</li>
-        <li><code>Log greeting</code>: This logs the value of <code>greeting</code> to the output.</li>
-    </ul>
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Working with Lists and Property Lists</h3>
+            <pre><code><span class="comment">// Create a list</span>
+<span class="keyword">put</span> (<span class="string">"apple"</span>, <span class="string">"banana"</span>, <span class="string">"cherry"</span>) <span class="keyword">into</span> fruitList
 
-    <h3>Working with Lists and Property Lists</h3>
-    <pre><code>
-// Create a list
-put ("apple", "banana", "cherry") into fruitList
+<span class="comment">// Access an item from the list</span>
+<span class="keyword">put</span> fruitList's <span class="keyword">first</span> item <span class="keyword">into</span> firstFruit
+<span class="function">Log</span> firstFruit
 
-// Access an item from the list
-put fruitList's first item into firstFruit
-Log firstFruit
+<span class="comment">// Create a property list</span>
+<span class="keyword">put</span> (name:<span class="string">"John"</span>, age:<span class="number">30</span>, occupation:<span class="string">"Tester"</span>) <span class="keyword">into</span> person
 
-// Create a property list
-put (name:"John", age:30, occupation:"Tester") into person
+<span class="comment">// Access a property</span>
+<span class="function">Log</span> person's name</code></pre>
 
-// Access a property
-Log person’s name
-    </code></pre>
-
-    <h3>Explanation:</h3>
-    <ul>
-        <li><strong>Lists:</strong> Ordered collections of items. You can access items using their position in the list.</li>
-        <li><strong>Property Lists:</strong> Collections of key-value pairs, similar to dictionaries in other languages.</li>
-    </ul>
-
-    <h2>Chapter 3: Control Structures in SenseTalk</h2>
-
-    <h3>Conditionals</h3>
-    <pre><code>
-put 10 into number
-
-if number > 5
-    Log "Number is greater than 5"
-else
-    Log "Number is 5 or less"
-end if
-    </code></pre>
-
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>if number > 5</code>: This checks whether the value stored in <code>number</code> is greater than 5.</li>
-        <li><code>Log</code>: Depending on the condition, either "Number is greater than 5" or "Number is 5 or less" is logged to the console.</li>
-        <li><code>else</code>: This block runs if the <code>if</code> condition is not met.</li>
-    </ul>
-
-    <h3>Switch Statement</h3>
-    <pre><code>
-put "banana" into fruit
-
-switch fruit
-    case "apple"
-        Log "It's an apple."
-    case "banana"
-        Log "It's a banana."
-    case "cherry"
-        Log "It's a cherry."
-    default
-        Log "It's an unknown fruit."
-end switch
-    </code></pre>
-
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>switch</code> statement: Evaluates the value of <code>fruit</code> and runs the corresponding <code>case</code> block.</li>
-        <li><code>default</code> case: Runs if none of the specified cases match the value of <code>fruit</code>.</li>
-    </ul>
-
-    <h3>Loops</h3>
-
-    <h4>Repeat with Each Loop:</h4>
-    <pre><code>
-put ("apple", "banana", "cherry") into fruitList
-
-repeat with each fruit in fruitList
-    Log "Fruit: " & fruit
-end repeat
-    </code></pre>
-
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>repeat with each</code>: This loop iterates over each item in <code>fruitList</code> and logs it.</li>
-    </ul>
-
-    <h4>Repeat with a Condition:</h4>
-    <pre><code>
-put 5 into counter
-
-repeat while counter > 0
-    Log "Counter is " & counter
-    subtract 1 from counter
-end repeat
-    </code></pre>
-
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>repeat while</code>: The loop continues as long as the condition (<code>counter > 0</code>) is true.</li>
-        <li><code>subtract 1 from counter</code>: Decrements the counter by 1 in each iteration.</li>
-    </ul>
-
-    <h4>Repeat a Fixed Number of Times:</h4>
-    <pre><code>
-repeat 3 times
-    Log "This message will be logged three times."
-end repeat
-    </code></pre>
-
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>repeat X times</code>: Repeats the enclosed block of code a fixed number of times.</li>
-    </ul>
-
-    <h2>Chapter 4: Advanced Topics</h2>
-
-    <h3>Image Recognition and Interaction</h3>
-
-    <h4>Clicking on an Image:</h4>
-    <pre><code>
-// Clicks on the image of a button
-Click "SubmitButton"
-    </code></pre>
-
-    <h3>Explanation:</h3>
-
-    <ul>
-        <li><code>Click "SubmitButton"</code>: This command searches for an image named "SubmitButton" and clicks on it. The image should be captured and stored in Eggplant Functional’s suite.</li>
-    </ul>
-
-    <h4>Waiting for an Image:</h4>
-    <pre><code>
-// Waits for up to 15 seconds for the image to appear
-WaitFor 15, "LoadingIcon"
-    </code></pre>
-
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>WaitFor 15, "LoadingIcon"</code>: Pauses the script for up to 15 seconds, waiting for the image "LoadingIcon" to appear on the screen.</li>
-    </ul>
-
-    <h4>Verifying the Presence of an Image:</h4>
-    <pre><code>
-// Checks if an image is present on the screen
-if ImageFound("SuccessMessage")
-    Log "Operation completed successfully."
-else
-    LogError "Operation failed."
-end if
-    </code></pre>
-
-    <h3>Explanation:</h3>
-    <ul>
-        <li><code>ImageFound</code>: This function returns true if the specified image is found on the screen, enabling conditional logic based on the presence of UI elements.</li>
-    </ul>
-
-    <h3>Working with External Data</h3>
-
-    <h4>Reading Data from a CSV File:</h4>
-    <pre><code>
-// Define the file path
-set filePath to "/path/to/data.csv"
-
-// Read the CSV file
-repeat with each record in file
-    
-
-
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+            <ul class="list-disc pl-6 mb-4">
+                <li><strong>Lists:</strong> Ordered collections of items. You can access items using their position in the list.</li>
+                <li><strong>Property Lists:</strong> Collections of key-value pairs, similar to dictionaries in other languages.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
