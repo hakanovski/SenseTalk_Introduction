@@ -260,6 +260,85 @@ end repeat
     </div>
 </div>
 
+
+            
+Chapter 5: Functions in SenseTalk
+
+        <!-- Chapter 5 -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Chapter 5: Functions in SenseTalk</h2>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Defining and Using Functions</h3>
+            <pre><code><span class="comment">// Define a function</span>
+function addNumbers x, y
+    return x + y
+end function
+
+<span class="comment">// Use the function</span>
+put addNumbers(5, 7) into result
+Log result</code></pre>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+            <ul class="list-disc pl-6 mb-4">
+                <li><code>function addNumbers x, y</code>: This defines a new function called `addNumbers` that takes two arguments, `x` and `y`.</li>
+                <li><code>return x + y</code>: The function returns the sum of `x` and `y`.</li>
+                <li><code>put addNumbers(5, 7) into result</code>: Calls the function with arguments 5 and 7, and stores the result in the variable `result`.</li>
+                <li><code>Log result</code>: Outputs the result of the function to the log.</li>
+            </ul>
+        </div>
+
+Chapter 6: Handling Errors with Try/Catch
+
+        <!-- Chapter 6 -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Chapter 6: Handling Errors with Try/Catch</h2>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Using Try/Catch for Error Handling</h3>
+            <pre><code><span class="comment">// Try block with potential error</span>
+try
+    put 5 / 0 into result
+catch
+    LogError "An error occurred: " & the exception
+end try</code></pre>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+            <ul class="list-disc pl-6 mb-4">
+                <li><code>try</code>: Starts a block of code that may throw an error.</li>
+                <li><code>put 5 / 0 into result</code>: This line will cause a division by zero error.</li>
+                <li><code>catch</code>: Catches the error and allows you to handle it.</li>
+                <li><code>LogError "An error occurred: " & the exception</code>: Logs the error message.</li>
+            </ul>
+        </div>
+
+Chapter 7: Working with Files
+
+        <!-- Chapter 7 -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-8">
+            <h2 class="text-2xl font-semibold mb-4 text-indigo-600">Chapter 7: Working with Files</h2>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Reading from a File</h3>
+            <pre><code><span class="comment">// Define the file path</span>
+put "/path/to/file.txt" into filePath
+
+<span class="comment">// Read the file contents</span>
+put file filePath into fileContents
+Log fileContents</code></pre>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Writing to a File</h3>
+            <pre><code><span class="comment">// Define the file path</span>
+put "/path/to/file.txt" into filePath
+
+<span class="comment">// Write to the file</span>
+write "Hello, SenseTalk!" to filePath</code></pre>
+
+            <h3 class="text-xl font-semibold mt-6 mb-3 text-indigo-500">Explanation:</h3>
+            <ul class="list-disc pl-6 mb-4">
+                <li><code>put "/path/to/file.txt" into filePath</code>: Specifies the path to the file.</li>
+                <li><code>put file filePath into fileContents</code>: Reads the contents of the file and stores it in `fileContents`.</li>
+                <li><code>write "Hello, SenseTalk!" to filePath</code>: Writes the string "Hello, SenseTalk!" to the specified file.</li>
+            </ul>
+        </div>            
+
 </body>
 </html>
 
