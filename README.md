@@ -4,8 +4,14 @@ I decided to start this Introduction series based on what I learned from what I 
 
 Right now, I’ve tried to provide some very basic syntax information, based on what I’ve learned about SenseTalk so far. I hope this will serve as a good introductory document for people who have no prior knowledge of SenseTalk. I will continue to add more content here. 
 
+Additionally, I created an ultra-basic, simple version in HTML format. If you want, you can also access the site version through the GitHub link below. We can develop this further together later on.
+
+
+👽 👾 https://hakanovski.github.io/SenseTalk_Introduction/main.html 👾 👽
+
+
 Please feel free to contribute and add your knowledge as well. 
 
 That’s all for now.
 
-Ha❌an
+H A ❌ A N
