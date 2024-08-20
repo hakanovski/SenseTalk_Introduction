@@ -3,6 +3,10 @@
 
 Welcome to Eggplant Functional! This guide is designed for those who have just started learning Eggplant and want to understand the most important features and functionalities. Over the past week, you’ve been getting familiar with the tool, and this documentation will consolidate what you’ve learned so far. It will focus on key areas you need to master as you continue your journey with Eggplant.
 
+Before you start reading the documentation I’ve begun to prepare, please note that this is not a completely reliable resource yet, at least for now. I’m still in the learning phase, and this documentation reflects what I’ve learned so far, without extensive filtering. I’ve tried to compile the most refined information I’ve gathered. There may be mistakes, so if you spot any, please let me know. More importantly, please don’t hesitate to contribute to this documentation. If you notice anything we’ve missed as a team or something I’ve forgotten to include, feel free to reach out, and we can work on improving this platform together.
+
+Hakan Yorgancı / Sr. Consultant
+
 ## 1. Understanding Eggplant Functional: The Basics
 
 Eggplant Functional is a GUI test automation tool that uses image-based testing to interact with the system under test (SUT). Unlike traditional testing tools that rely on code or APIs, Eggplant works by recognizing elements on the screen using images, text (via OCR), and coordinates. Here are the core components:
