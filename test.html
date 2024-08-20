@@ -410,7 +410,279 @@
             <li>Accountability: Reports and logs offer detailed records of test execution, which is useful for auditing and troubleshooting.</li>
         </ul>
     </section>
+
+    <div class="container">
+    <section>
+        <h2>11. Handling Asynchronous Events</h2>
+        <p>Applications often include asynchronous events such as animations, dynamic content loading, or delays in server responses. Handling these events in test scripts is crucial to avoid false failures and ensure that tests are robust.</p>
+
+        <h3>11.1 Using WaitFor and Wait Commands</h3>
+        <p>Eggplant Functional offers WaitFor and Wait commands to handle asynchronous events. These commands allow the script to pause until a specific condition is met, ensuring that the script only proceeds when the SUT is ready.</p>
+        <p>Example: Suppose you are waiting for a loading spinner to disappear before proceeding:</p>
+        <code>
+            WaitFor "LoadingSpinner.png" to disappear<br>
+            Click "SubmitButton.png"
+        </code>
+        <p>Or you might need to wait a fixed amount of time before interacting with an element:</p>
+        <code>
+            Wait 5 seconds<br>
+            Click "SubmitButton.png"
+        </code>
+
+        <h3>Benefits:</h3>
+        <ul>
+            <li><strong>Reliability:</strong> Your tests become more reliable by accounting for unpredictable delays or asynchronous events.</li>
+            <li><strong>Avoiding False Negatives:</strong> Proper waiting mechanisms prevent scripts from failing due to timing issues, thereby reducing false negatives.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>12. Parallel Testing</h2>
+        <p>Parallel testing involves running multiple tests at the same time across different environments, browsers, or devices. This technique significantly reduces the total time required to execute your test suite and allows for broader test coverage.</p>
+
+        <h3>12.1 Implementing Parallel Testing</h3>
+        <p>Eggplant Functional allows for parallel testing through its integration with CI tools and test management frameworks. You can configure your tests to run on multiple instances of the SUT simultaneously.</p>
+        <p>Example: Using Jenkins or another CI tool, you can configure jobs to run your tests in parallel across different SUTs:</p>
+        <code>
+            eggplant --suite "MyTestSuite.suite" --parallel --sut "SUT1, SUT2, SUT3"
+        </code>
+
+        <h3>Benefits:</h3>
+        <ul>
+            <li><strong>Speed:</strong> Parallel execution significantly reduces the time to run the full test suite.</li>
+            <li><strong>Coverage:</strong> Allows you to test across multiple configurations simultaneously, increasing coverage.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>13. Continuous Integration and Continuous Testing</h2>
+        <p>Integrating Eggplant Functional with continuous integration (CI) tools is essential for ensuring that automated tests are run continuously, providing immediate feedback on new code changes.</p>
+
+        <h3>13.1 Integrating with CI Tools</h3>
+        <p>Eggplant Functional can be integrated with popular CI tools like Jenkins, GitLab CI, or TeamCity. This integration enables the automatic execution of test scripts as part of the build process.</p>
+        <p>Example: In Jenkins, you can set up a job to run your Eggplant tests every time there’s a code commit:</p>
+        <code>
+            eggplant --suite "MyTestSuite.suite" --output "TestResults"
+        </code>
+
+        <h3>13.2 Benefits of Continuous Testing</h3>
+        <ul>
+            <li><strong>Immediate Feedback:</strong> Developers get quick feedback on their changes, enabling faster identification and resolution of defects.</li>
+            <li><strong>Reduced Risk:</strong> Continuous testing helps catch issues early in the development cycle, reducing the risk of critical bugs in production.</li>
+        </ul>
+
+        <h3>Key Points:</h3>
+        <ul>
+            <li><strong>Scalability:</strong> CI integration scales well with large teams and frequent releases.</li>
+            <li><strong>Automation:</strong> Reduces manual testing efforts and improves overall efficiency.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>14. Advanced Debugging Techniques</h2>
+        <p>When working with complex test automation, advanced debugging techniques become necessary to identify and resolve issues effectively.</p>
+
+        <h3>14.1 Using Breakpoints</h3>
+        <p>You can set breakpoints in Eggplant Functional to pause the execution of a script at a specific point. This allows you to inspect variables, review the SUT’s state, and step through the script line by line.</p>
+        <p>Example: Adding a breakpoint in your script:</p>
+        <code>
+            breakpoint<br>
+            Click "SubmitButton.png"
+        </code>
+
+        <h3>14.2 Analyzing Logs</h3>
+        <p>Eggplant generates detailed logs during test execution. Analyzing these logs can help identify where and why a test failed.</p>
+
+        <h3>Key Points:</h3>
+        <ul>
+            <li><strong>Error Logs:</strong> Review error messages and stack traces to understand failures.</li>
+            <li><strong>Execution Flow:</strong> Follow the execution flow in the logs to see where the script diverged from the expected behavior.</li>
+        </ul>
+
+        <h3>Benefits:</h3>
+        <ul>
+            <li><strong>Precision:</strong> Advanced debugging helps you pinpoint the exact cause of failures.</li>
+            <li><strong>Efficiency:</strong> Quickly resolving issues allows for more productive testing and development cycles.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>15. Best Practices for Test Automation with Eggplant</h2>
+        <p>Lastly, adhering to best practices in test automation ensures that your test suite remains maintainable, scalable, and effective.</p>
+
+        <h3>15.1 Keep Tests Independent</h3>
+        <p>Each test should be independent and not rely on the outcome of another test. This ensures that a failure in one test doesn’t cause cascading failures in other tests.</p>
+
+        <h3>15.2 Regularly Refactor Test Scripts</h3>
+        <p>Regularly review and refactor your test scripts to remove redundancies, improve readability, and optimize performance.</p>
+
+        <h3>15.3 Maintain a Clear Naming Convention</h3>
+        <p>Use clear and consistent naming conventions for your scripts, functions, images, and variables. This makes it easier to understand and manage your test suite.</p>
+        <p>Example: Prefix function names with the action they perform (e.g., LoginUser, SearchItem).</p>
+
+        <h3>Benefits:</h3>
+        <ul>
+            <li><strong>Maintainability:</strong> Clear and well-structured tests are easier to maintain and scale.</li>
+            <li><strong>Collaboration:</strong> Following best practices makes it easier for team members to collaborate on test automation.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2>16. Dynamic Test Reporting in Eggplant Functional</h2>
+        <p>Eggplant Functional provides robust capabilities for dynamic test reporting. This section covers how to generate automated reports based on test executions, including handling dynamic test case names and Suite Statistics.</p>
+
+        <h3>16.1 Generating Automated CSV Reports</h3>
+        <p>To create a CSV report after running multiple test cases in Eggplant Functional, you can incorporate dynamic test result capturing directly into your test scripts.</p>
+
+        <p>Example Script: Automated CSV Reporting</p>
+        <code>
+        // 1. Initialize CSV File<br>
+        put "Test Name, Status, Duration, Comments" into csvHeader<br>
+        put csvHeader & return into file "TestResults.csv"<br><br>
+
+        // 2. Define Test Cases<br>
+        set testCases to ("Test Case 1", "Test Case 2", "Test Case 3", "Test Case 4")<br><br>
+
+        // 3. Execute Tests and Capture Results<br>
+        repeat with each testCase in testCases<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;set startTime to now<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;try<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Placeholder for actual test steps<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Example: if the test case involves logging in<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if testCase is "Test Case 1" then<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Click "LoginButton.png"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TypeText "username"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TypeText tab<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TypeText "password"<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;        Click “SubmitButton.png”
+            if ImageFound(“Dashboard.png”) then
+                put “Passed” into testStatus
+                put “Login successful” into testComments
+            else
+                put “Failed” into testStatus
+                put “Dashboard not found” into testComments
+            end if
+        end if
+    catch
+        put “Failed” into testStatus
+        put “An error occurred during “ & testCase into testComments
+    end try
+
+    &nbsp;&nbsp;&nbsp;&nbsp;set testDuration to the seconds of (now - startTime) & "s"<br><br>
+
+    // 4. Write Results to CSV<br>
+    put testCase & "," & testStatus & "," & testDuration & "," & testComments & return after file "TestResults.csv"<br>
+    end repeat<br><br>
+
+    // 5. Log the Completion of the Report<br>
+    log "CSV report created successfully: TestResults.csv"
+    </code>
+
+    <h3>16.2 Handling Dynamic Test Cases and Suite Statistics</h3>
+    <p>When working with dynamically generated Suite Statistics, it's essential to process the data correctly and generate accurate reports. Eggplant Functional allows you to read the Suite Statistics file and format the data into a CSV report.</p>
+
+    <p>Example Script: Processing Suite Statistics</p>
+    <code>
+    // 1. Read Suite Statistics File<br>
+    put file "Results/SuiteStatistics.txt" into suiteStats<br><br>
+
+    // 2. Initialize CSV Report<br>
+    put "Script, Last Status, Runs, Fails, First Run, Last Run, Avg Time (Success)" into csvHeader<br>
+    put csvHeader & return into file "SuiteStatisticsReport.csv"<br><br>
+
+    // 3. Process Each Line in Suite Statistics<br>
+    repeat with each line of suiteStats<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;if line is not empty then<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put word 1 of line into testCaseName<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put word 2 of line into lastStatus<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put word 3 of line into runCount<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put word 4 of line into failCount<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put word 5 of line into firstRun<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put word 6 of line into lastRun<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put word 7 of line into avgTime<br><br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// 4. Write the Processed Data to CSV<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put testCaseName & "," & lastStatus & "," & runCount & "," & failCount & "," & firstRun & "," & lastRun & "," & avgTime & return after file "SuiteStatisticsReport.csv"<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;end if<br>
+    end repeat<br><br>
+
+    log "Suite Statistics CSV report created successfully."
+    </code>
+</section>
+
+<section>
+    <h2>17. Handling Different Test Case Types Dynamically</h2>
+    <p>Different test cases (such as TBA, NADL) might require specific handling in terms of naming conventions, result processing, and reporting. This section explores how to dynamically manage different test types within a single framework.</p>
+
+    <h3>17.1 Dynamic Test Type Handling</h3>
+    <p>In complex test suites, you may encounter different types of test cases, each with unique identifiers like "TBA" or "NADL." It is crucial to manage these dynamically to generate accurate reports.</p>
+
+    <p>Example: Handling Different Test Case Types</p>
+    <code>
+    // 1. Identify and Process Test Type<br>
+    repeat with each line of suiteStats<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;if line contains "TBA" then<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put "TBA_TestResults.csv" into fileName<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;else if line contains "NADL" then<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put "NADL_TestResults.csv" into fileName<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;else<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;put "General_TestResults.csv" into fileName<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;end if<br><br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp;// Process the line and write to the corresponding file<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;put line & return after file fileName<br>
+    end repeat
+    </code>
+</section>
+
+<section>
+    <h2>18. Dynamic Naming Conventions for Test Reports</h2>
+    <p>Maintaining clear and consistent naming conventions is essential, especially when dealing with dynamically generated reports across various test case types. This section discusses best practices for naming your reports and how to implement these dynamically within your scripts.</p>
+
+    <h3>18.1 Dynamic Naming Based on Test Types and Execution Time</h3>
+    <p>Dynamic naming conventions help in keeping reports organized and easily identifiable. This is particularly useful when multiple test cases are run in sequence or across different environments.</p>
+
+    <p>Example: Dynamic Naming Convention</p>
+    <code>
+    // Dynamic naming based on test type and timestamp<br>
+    put "TBA_TestResults_" & the short date & "_" & the time into fileName<br>
+    replace all spaces in fileName with "_" // Remove spaces to avoid filename issues<br>
+    put ".csv" after fileName<br><br>
+
+    put "Test Name, Status, Duration, Comments" into csvHeader<br>
+    put csvHeader & return into file fileName<br><br>
+
+    log "CSV report initialized: " & fileName
+    </code>
+</section>
+
+<section>
+    <h2>19. Best Practices for Automated Reporting</h2>
+    <p>Automated reporting is a key aspect of test automation. Proper implementation can greatly enhance the effectiveness and usability of your tests. This section outlines best practices for generating, maintaining, and distributing automated reports in Eggplant Functional.</p>
+
+    <h3>19.1 Consistent Report Formats</h3>
+    <p>Ensure that all reports follow a consistent format, making it easier to compare results across different runs or test cases. This includes standardized headers, naming conventions, and data presentation.</p>
+
+    <h3>19.2 Automation of Report Distribution</h3>
+    <p>Consider automating the distribution of test reports via email or other communication tools. This can be achieved using external scripts like PowerShell if SMTP access is restricted within Eggplant Functional.</p>
+
+    <p>Example: Automating Report Distribution</p>
+    <code>
+    # PowerShell script to send an email with the generated CSV report attached<br>
+    $EmailFrom = "your_email@example.com"<br>
+    $EmailTo = "recipient@example.com"<br>
+    $Subject = "Automated Test Results"<br>
+    $Body = "Please find the attached test results."<br>
+    $SMTPServer = "smtp.yourserver.com"<br>
+    $Attachment = "C:\\path\\to\\TestResults.csv"<br><br>
+
+    Send-MailMessage -From $EmailFrom -To $EmailTo -Subject $Subject -Body $Body -SmtpServer $SMTPServer -Attachments $Attachment
+    </code>
+ </section>
+    
 </div>
+
+    
 
 <footer>
     <p>Eggplant Functional Guide &copy; 2024. All Rights Reserved.</p>
