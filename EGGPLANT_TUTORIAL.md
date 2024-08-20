@@ -1,9 +1,8 @@
-```markdown
-# Eggplant Functional: A Beginner’s Guide
+# Eggplant Functional: A Beginner's Guide
 
-Welcome to Eggplant Functional! This guide is designed for those who have just started learning Eggplant and want to understand the most important features and functionalities. Over the past week, you’ve been getting familiar with the tool, and this documentation will consolidate what you’ve learned so far. It will focus on key areas you need to master as you continue your journey with Eggplant.
+Welcome to Eggplant Functional! This guide is designed for those who have just started learning Eggplant and want to understand the most important features and functionalities. Over the past week, you've been getting familiar with the tool, and this documentation will consolidate what you've learned so far. It will focus on key areas you need to master as you continue your journey with Eggplant.
 
-Before you start reading the documentation I’ve begun to prepare, please note that this is not a completely reliable resource yet, at least for now. I’m still in the learning phase, and this documentation reflects what I’ve learned so far, without extensive filtering. I’ve tried to compile the most refined information I’ve gathered. There may be mistakes, so if you spot any, please let me know. More importantly, please don’t hesitate to contribute to this documentation. If you notice anything we’ve missed as a team or something I’ve forgotten to include, feel free to reach out, and we can work on improving this platform together.
+Before you start reading the documentation I've begun to prepare, please note that this is not a completely reliable resource yet, at least for now. I'm still in the learning phase, and this documentation reflects what I've learned so far, without extensive filtering. I've tried to compile the most refined information I've gathered. There may be mistakes, so if you spot any, please let me know. More importantly, please don't hesitate to contribute to this documentation. If you notice anything we've missed as a team or something I've forgotten to include, feel free to reach out, and we can work on improving this platform together.
 
 Hakan Yorgancı / Sr. Consultant
 
@@ -13,7 +12,7 @@ Eggplant Functional is a GUI test automation tool that uses image-based testing 
 
 - **SUT (System Under Test):** The application or system you are testing. Eggplant interacts with the SUT through a remote connection.
 - **Scripts:** Test scripts written in the SenseTalk language to automate interactions with the SUT.
-- **Images:** Key elements on the SUT’s interface that Eggplant recognizes and interacts with during testing.
+- **Images:** Key elements on the SUT's interface that Eggplant recognizes and interacts with during testing.
 - **OCR (Optical Character Recognition):** Used to recognize and validate text within the SUT.
 
 ## 2. Setting Up Your First Test Script
@@ -24,7 +23,6 @@ Before you can automate any tests, you need to connect to the SUT:
 
 ```sensetalk
 Connect "192.168.1.100" -- IP address of the SUT
-```
 
 ### 2.2 Creating a Basic Script
 
