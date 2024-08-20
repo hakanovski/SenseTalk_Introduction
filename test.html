@@ -1,5 +1,3 @@
-
-html_full_content = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -188,186 +186,168 @@ html_full_content = """
                 <li><strong>Conditional Logic:</strong> Directs the script based on conditions.</li>
             </ul>
         </section>
-
+    </div>
+        <div class="container">
         <section>
             <h2>6. Best Practices for Maintainability</h2>
             <h3>6.1 Modularizing Your Scripts</h3>
             <p>Break your scripts into smaller, reusable functions:</p>
-            <code>
-                to Login(username, password)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "LoginButton.png"<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;TypeText username<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;TypeText Tab<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;TypeText password<br>
 
 
+        <code>
+            to Login(username, password)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "LoginButton.png"<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TypeText username<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TypeText Tab<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TypeText password<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "SubmitButton.png"<br>
+            end Login
+        </code>
+        <p>-- Call the function</p>
+        <code>Login("testuser", "password123")</code>
 
+        <h3>6.2 Centralizing Data</h3>
+        <p>Keep your data separate from your scripts:</p>
+        <code>
+            {<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;"username": "testuser",<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;"password": "password123"<br>
+            }<br>
+            put file "UserData.json" into jsonData<br>
+            put jsonData as json into data<br>
+            Login(data.username, data.password)
+        </code>
 
+        <h3>Key Points:</h3>
+        <ul>
+            <li><strong>Modular Functions:</strong> Makes your scripts more reusable and easier to maintain.</li>
+            <li><strong>Centralized Data:</strong> Simplifies updates when test data changes.</li>
+        </ul>
+    </section>
 
+    <section>
+        <h2>7. Troubleshooting and Debugging</h2>
+        <h3>7.1 Logging</h3>
+        <p>Always log key actions and results to help with debugging:</p>
+        <code>
+            log "Starting login process"<br>
+            Click "LoginButton.png"<br>
+            log "Login button clicked"
+        </code>
 
-# Continuing with the HTML content creation by splitting the sections into manageable parts
+        <h3>7.2 Try-Catch Blocks</h3>
+        <p>Handle errors gracefully to prevent script failures:</p>
+        <code>
+            try<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "NonExistentButton.png"<br>
+            catch<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;logError "Failed to find the button"<br>
+            end try
+        </code>
 
-# Part 2 of the HTML content
-html_content_part2 = """
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "SubmitButton.png"<br>
-                end Login
-            </code>
-            <p>-- Call the function</p>
-            <code>Login("testuser", "password123")</code>
+        <h3>Key Points:</h3>
+        <ul>
+            <li><strong>Logging:</strong> Helps trace what happened during a test run.</li>
+            <li><strong>Error Handling:</strong> Prevents entire script failures by catching and managing errors.</li>
+        </ul>
+    </section>
 
-            <h3>6.2 Centralizing Data</h3>
-            <p>Keep your data separate from your scripts:</p>
-            <code>
-                {<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;"username": "testuser",<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;"password": "password123"<br>
-                }<br>
-                put file "UserData.json" into jsonData<br>
-                put jsonData as json into data<br>
-                Login(data.username, data.password)
-            </code>
+    <section>
+        <h2>8. Code Reusability in Eggplant Functional</h2>
+        <p>Code reusability is a critical concept in software development and test automation that focuses on writing code in a way that it can be reused across multiple scripts, test cases, or even different projects. In Eggplant Functional, reusability helps you avoid duplication, reduce maintenance effort, and create a more organized and efficient test suite. Here’s how you can achieve and maximize code reusability in Eggplant Functional:</p>
 
-            <h3>Key Points:</h3>
-            <ul>
-                <li><strong>Modular Functions:</strong> Makes your scripts more reusable and easier to maintain.</li>
-                <li><strong>Centralized Data:</strong> Simplifies updates when test data changes.</li>
-            </ul>
-        </section>
+        <h3>8.1 Creating Reusable Functions</h3>
+        <p>Reusable functions allow you to encapsulate frequently used actions or sequences of actions into a single function. This function can then be called whenever needed, rather than rewriting the same code in multiple places.</p>
+        <p>Example: Let’s say you have a login process that you need to perform in multiple test cases. Instead of writing the login steps repeatedly in each script, you can create a reusable function:</p>
+        <code>
+            to Login(username, password)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "LoginButton.png"<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TypeText username<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TypeText Tab<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TypeText password<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "SubmitButton.png"<br>
+            end Login
+        </code>
+        <p>You can then call this Login function in any script where you need to perform a login:</p>
+        <code>Login("testuser", "password123")</code>
 
-        <section>
-            <h2>7. Troubleshooting and Debugging</h2>
-            <h3>7.1 Logging</h3>
-            <p>Always log key actions and results to help with debugging:</p>
-            <code>
-                log "Starting login process"<br>
-                Click "LoginButton.png"<br>
-                log "Login button clicked"
-            </code>
+        <h3>Benefits:</h3>
+        <ul>
+            <li><strong>Reduced Duplication:</strong> You avoid writing the same login steps in every script.</li>
+            <li><strong>Simplified Maintenance:</strong> If the login process changes (e.g., the button image changes), you only need to update the Login function, not every test script.</li>
+        </ul>
 
-            <h3>7.2 Try-Catch Blocks</h3>
-            <p>Handle errors gracefully to prevent script failures:</p>
-            <code>
-                try<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "NonExistentButton.png"<br>
-                catch<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;logError "Failed to find the button"<br>
-                end try
-            </code>
+        <h3>8.2 Using Parameters in Functions</h3>
+        <p>Functions can be made even more flexible by using parameters. This allows the same function to be used in different contexts with different data.</p>
+        <p>Example: A function to search for different items on a website:</p>
+        <code>
+            to SearchFor(item)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "SearchIcon.png"<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;WaitFor "SearchField.png"<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TypeText item<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "SearchButton.png"<br>
+            end SearchFor
+        </code>
+        <p>You can call this function with different parameters to search for different items:</p>
+        <code>
+            SearchFor("Eggplant")<br>
+            SearchFor("Test Automation")
+        </code>
 
-            <h3>Key Points:</h3>
-            <ul>
-                <li><strong>Logging:</strong> Helps trace what happened during a test run.</li>
-                <li><strong>Error Handling:</strong> Prevents entire script failures by catching and managing errors.</li>
-            </ul>
-        </section>
+        <h3>Benefits:</h3>
+        <ul>
+            <li><strong>Flexibility:</strong> One function can handle a variety of inputs, making it more versatile.</li>
+            <li><strong>Scalability:</strong> As your test cases grow, you can easily reuse the same functions with different data.</li>
+        </ul>
+    </section>
 
-        <section>
-            <h2>8. Code Reusability in Eggplant Functional</h2>
-            <p>Code reusability is a critical concept in software development and test automation that focuses on writing code in a way that it can be reused across multiple scripts, test cases, or even different projects. In Eggplant Functional, reusability helps you avoid duplication, reduce maintenance effort, and create a more organized and efficient test suite. Here’s how you can achieve and maximize code reusability in Eggplant Functional:</p>
+    <section>
+        <h3>8.3 Modularizing Test Scripts</h3>
+        <p>Breaking down your test scripts into smaller, modular components is another way to enhance reusability. Instead of writing one large script, divide it into smaller, logical sections that can be reused independently.</p>
+        <p>Example: Consider a test for a shopping cart application:</p>
+        <ul>
+            <li>AddItemToCart</li>
+            <li>RemoveItemFromCart</li>
+            <li>ProceedToCheckout</li>
+            <li>ApplyCoupon</li>
+        </ul>
+        <p>Each of these actions can be encapsulated in its own function:</p>
+        <code>
+            to AddItemToCart(item)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click item<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "AddToCartButton.png"<br>
+            end AddItemToCart<br><br>
+            to RemoveItemFromCart(item)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click item<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "RemoveButton.png"<br>
+            end RemoveItemFromCart<br><br>
+            to ProceedToCheckout()<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "CartIcon.png"<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "CheckoutButton.png"<br>
+            end ProceedToCheckout<br><br>
+            to ApplyCoupon(couponCode)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "CouponField.png"<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;TypeText couponCode<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Click "ApplyButton.png"<br>
+            end ApplyCoupon
+        </code>
+        <p>These functions can be combined in different scripts to create various test scenarios:</p>
+        <code>
+            AddItemToCart("Laptop.png")<br>
+            AddItemToCart("Mouse.png")<br>
+            ApplyCoupon("DISCOUNT10")<br>
+            ProceedToCheckout()
+        </code>
 
-            <h3>8.1 Creating Reusable Functions</h3>
-            <p>Reusable functions allow you to encapsulate frequently used actions or sequences of actions into a single function. This function can then be called whenever needed, rather than rewriting the same code in multiple places.</p>
-            <p>Example: Let’s say you have a login process that you need to perform in multiple test cases. Instead of writing the login steps repeatedly in each script, you can create a reusable function:</p>
-            <code>
-                to Login(username, password)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "LoginButton.png"<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;TypeText username<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;TypeText Tab<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;TypeText password<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "SubmitButton.png"<br>
-                end Login
-            </code>
-            <p>You can then call this Login function in any script where you need to perform a login:</p>
-            <code>Login("testuser", "password123")</code>
+        <h3>Benefits:</h3>
+        <ul>
+            <li>Reuse Across Scenarios: Modular functions can be mixed and matched to create different test scenarios without rewriting code.</li>
+            <li>Improved Clarity: Each function performs a specific task, making your scripts easier to read and understand.</li>
+        </ul>
+    </section>
+</div>
 
-            <h3>Benefits:</h3>
-            <ul>
-                <li><strong>Reduced Duplication:</strong> You avoid writing the same login steps in every script.</li>
-                <li><strong>Simplified Maintenance:</strong> If the login process changes (e.g., the button image changes), you only need to update the Login function, not every test script.</li>
-            </ul>
-
-            <h3>8.2 Using Parameters in Functions</h3>
-            <p>Functions can be made even more flexible by using parameters. This allows the same function to be used in different contexts with different data.</p>
-            <p>Example: A function to search for different items on a website:</p>
-            <code>
-                to SearchFor(item)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "SearchIcon.png"<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;WaitFor "SearchField.png"<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;TypeText item<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "SearchButton.png"<br>
-                end SearchFor
-            </code>
-            <p>You can call this function with different parameters to search for different items:</p>
-            <code>
-                SearchFor("Eggplant")<br>
-                SearchFor("Test Automation")
-            </code>
-
-            <h3>Benefits:</h3>
-            <ul>
-                <li><strong>Flexibility:</strong> One function can handle a variety of inputs, making it more versatile.</li>
-                <li><strong>Scalability:</strong> As your test cases grow, you can easily reuse the same functions with different data.</li>
-            </ul>
-        </section>
-    </div>
-"""
-
-# Saving part 2 of the HTML content
-html_file_part2_path = "/mnt/data/Eggplant_Functional_Guide_Part2.html"
-with open(html_file_part2_path, "w") as file:
-    file.write(html_content_part2)
-
-html_file_part2_path
-
-# Now, creating part 3 of the HTML content
-
-html_content_part3 = """
     <div class="container">
-        <section>
-            <h3>8.3 Modularizing Test Scripts</h3>
-            <p>Breaking down your test scripts into smaller, modular components is another way to enhance reusability. Instead of writing one large script, divide it into smaller, logical sections that can be reused independently.</p>
-            <p>Example: Consider a test for a shopping cart application:</p>
-            <ul>
-                <li>AddItemToCart</li>
-                <li>RemoveItemFromCart</li>
-                <li>ProceedToCheckout</li>
-                <li>ApplyCoupon</li>
-            </ul>
-            <p>Each of these actions can be encapsulated in its own function:</p>
-            <code>
-                to AddItemToCart(item)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click item<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "AddToCartButton.png"<br>
-                end AddItemToCart<br><br>
-                to RemoveItemFromCart(item)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click item<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "RemoveButton.png"<br>
-                end RemoveItemFromCart<br><br>
-                to ProceedToCheckout()<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "CartIcon.png"<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "CheckoutButton.png"<br>
-                end ProceedToCheckout<br><br>
-                to ApplyCoupon(couponCode)<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "CouponField.png"<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;TypeText couponCode<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Click "ApplyButton.png"<br>
-                end ApplyCoupon
-            </code>
-            <p>These functions can be combined in different scripts to create various test scenarios:</p>
-            <code>
-                AddItemToCart("Laptop.png")<br>
-                AddItemToCart("Mouse.png")<br>
-                ApplyCoupon("DISCOUNT10")<br>
-                ProceedToCheckout()
-            </code>
-
-            <h3>Benefits:</h3>
-            <ul>
-                <li>Reuse Across Scenarios: Modular functions can be mixed and matched to create different test scenarios without rewriting code.</li>
-                <li>Improved Clarity: Each function performs a specific task, making your scripts easier to read and understand.</li>
-            </ul>
-        </section>
-
         <section>
             <h2>9. Data-Driven Testing</h2>
             <p>Data-driven testing is a technique where test scripts are executed with different sets of input data. This approach helps you validate that the application behaves correctly with various data inputs without having to write separate test scripts for each set of data. It significantly enhances test coverage and reduces the effort required to create new tests.</p>
@@ -382,68 +362,59 @@ html_content_part3 = """
                 testuser3,password3
             </code>
 
-            <h3>9.2 Implementing Data-Driven Tests</h3>
-            <p>Here’s how you can implement a data-driven test using the CSV file:</p>
-            <code>
-                set userData to file "UserData.csv" as table<br>
-                repeat with each record of userData<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;put record's username into username<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;put record's password into password<br><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;Login(username, password)<br><br>
-                &nbsp;&nbsp;&nbsp;&nbsp;if ImageFound("Dashboard.png") then<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log "Login successful for" && username<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;else<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logError "Login failed for" && username<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;end if<br>
-                end repeat
-            </code>
+        <h3>9.2 Implementing Data-Driven Tests</h3>
+        <p>Here’s how you can implement a data-driven test using the CSV file:</p>
+        <code>
+            set userData to file "UserData.csv" as table<br>
+            repeat with each record of userData<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;put record's username into username<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;put record's password into password<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;Login(username, password)<br><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;if ImageFound("Dashboard.png") then<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log "Login successful for" && username<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;else<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logError "Login failed for" && username<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;end if<br>
+            end repeat
+        </code>
 
-            <h3>Benefits:</h3>
-            <ul>
-                <li>Enhanced Coverage: You can easily test multiple data sets without writing additional scripts.</li>
-                <li>Scalability: As new data sets are added, the same test script can handle them without modification.</li>
-            </ul>
-        </section>
+        <h3>Benefits:</h3>
+        <ul>
+            <li>Enhanced Coverage: You can easily test multiple data sets without writing additional scripts.</li>
+            <li>Scalability: As new data sets are added, the same test script can handle them without modification.</li>
+        </ul>
+    </section>
 
-        <section>
-            <h2>10. Test Execution and Reporting</h2>
-            <p>Automating the execution of your test suite and generating reports are crucial aspects of test automation. Eggplant Functional provides various ways to execute tests and produce reports that help you understand test results and track progress.</p>
+    <section>
+        <h2>10. Test Execution and Reporting</h2>
+        <p>Automating the execution of your test suite and generating reports are crucial aspects of test automation. Eggplant Functional provides various ways to execute tests and produce reports that help you understand test results and track progress.</p>
 
-            <h3>10.1 Automating Test Execution</h3>
-            <p>You can schedule or automate the execution of your test suite using continuous integration (CI) tools such as Jenkins. This ensures that your tests are run regularly, such as after every code change or at specific intervals.</p>
-            <p>Example: You can run your test suite from the command line, which can then be integrated into a CI pipeline:</p>
-            <code>eggplant --suite "MyTestSuite.suite"</code>
-            <p>This command can be scheduled or triggered by your CI tool.</p>
+        <h3>10.1 Automating Test Execution</h3>
+        <p>You can schedule or automate the execution of your test suite using continuous integration (CI) tools such as Jenkins. This ensures that your tests are run regularly, such as after every code change or at specific intervals.</p>
+        <p>Example: You can run your test suite from the command line, which can then be integrated into a CI pipeline:</p>
+        <code>eggplant --suite "MyTestSuite.suite"</code>
+        <p>This command can be scheduled or triggered by your CI tool.</p>
 
-            <h3>10.2 Generating Test Reports</h3>
-            <p>Eggplant Functional automatically generates detailed logs and reports for each test run. These reports can be customized and analyzed to track the success rate, identify failures, and monitor the overall health of your application.</p>
+        <h3>10.2 Generating Test Reports</h3>
+        <p>Eggplant Functional automatically generates detailed logs and reports for each test run. These reports can be customized and analyzed to track the success rate, identify failures, and monitor the overall health of your application.</p>
 
-            <h3>Key Points:</h3>
-            <ul>
-                <li>HTML Reports: Eggplant provides HTML reports that are easy to share and review.</li>
-                <li>Log Files: Detailed log files contain step-by-step results of the test execution, helping you debug issues.</li>
-            </ul>
+        <h3>Key Points:</h3>
+        <ul>
+            <li>HTML Reports: Eggplant provides HTML reports that are easy to share and review.</li>
+            <li>Log Files: Detailed log files contain step-by-step results of the test execution, helping you debug issues.</li>
+        </ul>
 
-            <h3>Benefits:</h3>
-            <ul>
-                <li>Continuous Feedback: Automated execution provides quick feedback on the health of your application.</li>
-                <li>Accountability: Reports and logs offer detailed records of test execution, which is useful for auditing and troubleshooting.</li>
-            </ul>
-        </section>
-    </div>
+        <h3>Benefits:</h3>
+        <ul>
+            <li>Continuous Feedback: Automated execution provides quick feedback on the health of your application.</li>
+            <li>Accountability: Reports and logs offer detailed records of test execution, which is useful for auditing and troubleshooting.</li>
+        </ul>
+    </section>
+</div>
 
-    <footer>
-        <p>Eggplant Functional Guide &copy; 2024. All Rights Reserved.</p>
-    </footer>
+<footer>
+    <p>Eggplant Functional Guide &copy; 2024. All Rights Reserved.</p>
+</footer>
+
 </body>
 </html>
-"""
-
-# Saving part 3 of the HTML content
-html_file_part3_path = "/mnt/data/Eggplant_Functional_Guide_Part3.html"
-with open(html_file_part3_path, "w") as file:
-    file.write(html_content_part3)
-
-html_file_part3_path
-
-
