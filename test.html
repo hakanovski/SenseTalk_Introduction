@@ -1,0 +1,449 @@
+
+html_full_content = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eggplant Functional: A Beginner's Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        header {
+            background: #35424a;
+            color: #ffffff;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        section {
+            background: #ffffff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3, h4 {
+            color: #35424a;
+        }
+        p {
+            margin-bottom: 10px;
+        }
+        ul {
+            margin-left: 20px;
+        }
+        code {
+            background: #f4f4f4;
+            border-left: 4px solid #35424a;
+            color: #333;
+            display: block;
+            padding: 10px;
+            margin: 20px 0;
+            white-space: pre-wrap;
+        }
+        footer {
+            background: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Eggplant Functional: A Beginner's Guide</h1>
+        </div>
+    </header>
+
+    <div class="container">
+        <section>
+            <h2>Welcome to Eggplant Functional!</h2>
+            <p>This guide is designed for those who have just started learning Eggplant and want to understand the most important features and functionalities. Over the past week, you've been getting familiar with the tool, and this documentation will consolidate what you've learned so far. It will focus on key areas you need to master as you continue your journey with Eggplant.</p>
+        </section>
+
+        <section>
+            <h2>1. Understanding Eggplant Functional: The Basics</h2>
+            <p>Eggplant Functional is a GUI test automation tool that uses image-based testing to interact with the system under test (SUT). Unlike traditional testing tools that rely on code or APIs, Eggplant works by recognizing elements on the screen using images, text (via OCR), and coordinates. Here are the core components:</p>
+            <ul>
+                <li><strong>SUT (System Under Test):</strong> The application or system you are testing. Eggplant interacts with the SUT through a remote connection.</li>
+                <li><strong>Scripts:</strong> Test scripts written in the SenseTalk language to automate interactions with the SUT.</li>
+                <li><strong>Images:</strong> Key elements on the SUT’s interface that Eggplant recognizes and interacts with during testing.</li>
+                <li><strong>OCR (Optical Character Recognition):</strong> Used to recognize and validate text within the SUT.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>2. Setting Up Your First Test Script</h2>
+            <h3>2.1 Connecting to the SUT</h3>
+            <p>Before you can automate any tests, you need to connect to the SUT:</p>
+            <code>Connect "192.168.1.100" -- IP address of the SUT</code>
+
+            <h3>2.2 Creating a Basic Script</h3>
+            <p>Let’s start with a simple script that opens an application and performs a basic operation, like logging in:</p>
+            <code>
+                Click "LoginButton.png" -- Click the login button<br>
+                WaitFor "UsernameField.png" -- Wait for the username field to appear<br>
+                TypeText "testuser" -- Type the username<br>
+                TypeText Tab -- Move to the password field<br>
+                TypeText "password123" -- Type the password<br>
+                Click "SubmitButton.png" -- Click the submit button
+            </code>
+
+            <h3>Key Points:</h3>
+            <ul>
+                <li><strong>Click:</strong> Used to click on an image (button, field, etc.).</li>
+                <li><strong>WaitFor:</strong> Waits until the specified image appears on the screen.</li>
+                <li><strong>TypeText:</strong> Simulates typing text into a field.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Image-Based Testing</h2>
+            <p>Image recognition is the cornerstone of Eggplant testing. Each element on the SUT’s interface that you want to interact with must be captured as an image.</p>
+
+            <h3>3.1 Capturing Images</h3>
+            <p>To capture images:</p>
+            <ul>
+                <li>Open the Capture Mode.</li>
+                <li>Hover over the element on the SUT.</li>
+                <li>Press the Capture button.</li>
+            </ul>
+
+            <h3>3.2 Using Images in Scripts</h3>
+            <p>After capturing images, use them in your scripts:</p>
+            <code>
+                Click "SearchIcon.png"<br>
+                WaitFor "SearchField.png"<br>
+                TypeText "Test Automation"<br>
+                Click "SearchButton.png"
+            </code>
+
+            <h3>Tips:</h3>
+            <ul>
+                <li>Keep your image captures clean and consistent.</li>
+                <li>If possible, capture images with distinct shapes or colors to improve recognition accuracy.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. OCR (Optical Character Recognition)</h2>
+            <p>OCR allows you to recognize and interact with text in your application, which is particularly useful when the text might change slightly or when dealing with dynamic content.</p>
+
+            <h3>4.1 Basic OCR Usage</h3>
+            <p>Here’s how to click on a button by recognizing its label text:</p>
+            <code>Click (Text:"Login", OcrConfidence:85) -- Clicks on a button labeled "Login"</code>
+
+            <h3>4.2 Tuning OCR Settings</h3>
+            <p>Sometimes, you might need to fine-tune the OCR settings to improve accuracy:</p>
+            <code>
+                Set the OcrSearchRectangle to (100,100,600,400) -- Defines the area to search for text<br>
+                Set the OcrLanguage to "English" -- Sets the OCR language<br>
+                Click (Text:"Submit", OcrConfidence:90)
+            </code>
+
+            <h3>Key Points:</h3>
+            <ul>
+                <li><strong>OcrSearchRectangle:</strong> Limits the area where OCR looks for text.</li>
+                <li><strong>OcrConfidence:</strong> Sets the confidence level required for text recognition.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5. Handling Dynamic Content and Resilience</h2>
+            <h3>5.1 Using Variables for Dynamic Data</h3>
+            <p>When working with data that changes, such as user input or dynamic text, you can use variables:</p>
+            <code>
+                put "newuser" into username<br>
+                put "mypassword" into password<br>
+                TypeText username<br>
+                TypeText Tab<br>
+                TypeText password
+            </code>
+
+            <h3>5.2 Implementing Conditional Logic</h3>
+            <p>Sometimes, the script’s flow needs to change based on what’s on the screen:</p>
+            <code>
+                if ImageFound("ErrorMessage.png") then<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;logError "An error occurred during login."<br>
+                else<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "DashboardIcon.png"<br>
+                end if
+            </code>
+
+            <h3>Key Points:</h3>
+            <ul>
+                <li><strong>ImageFound:</strong> Checks if an image exists on the screen.</li>
+                <li><strong>Conditional Logic:</strong> Directs the script based on conditions.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>6. Best Practices for Maintainability</h2>
+            <h3>6.1 Modularizing Your Scripts</h3>
+            <p>Break your scripts into smaller, reusable functions:</p>
+            <code>
+                to Login(username, password)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "LoginButton.png"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;TypeText username<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;TypeText Tab<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;TypeText password<br>
+
+
+
+
+
+
+# Continuing with the HTML content creation by splitting the sections into manageable parts
+
+# Part 2 of the HTML content
+html_content_part2 = """
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "SubmitButton.png"<br>
+                end Login
+            </code>
+            <p>-- Call the function</p>
+            <code>Login("testuser", "password123")</code>
+
+            <h3>6.2 Centralizing Data</h3>
+            <p>Keep your data separate from your scripts:</p>
+            <code>
+                {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"username": "testuser",<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;"password": "password123"<br>
+                }<br>
+                put file "UserData.json" into jsonData<br>
+                put jsonData as json into data<br>
+                Login(data.username, data.password)
+            </code>
+
+            <h3>Key Points:</h3>
+            <ul>
+                <li><strong>Modular Functions:</strong> Makes your scripts more reusable and easier to maintain.</li>
+                <li><strong>Centralized Data:</strong> Simplifies updates when test data changes.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>7. Troubleshooting and Debugging</h2>
+            <h3>7.1 Logging</h3>
+            <p>Always log key actions and results to help with debugging:</p>
+            <code>
+                log "Starting login process"<br>
+                Click "LoginButton.png"<br>
+                log "Login button clicked"
+            </code>
+
+            <h3>7.2 Try-Catch Blocks</h3>
+            <p>Handle errors gracefully to prevent script failures:</p>
+            <code>
+                try<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "NonExistentButton.png"<br>
+                catch<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;logError "Failed to find the button"<br>
+                end try
+            </code>
+
+            <h3>Key Points:</h3>
+            <ul>
+                <li><strong>Logging:</strong> Helps trace what happened during a test run.</li>
+                <li><strong>Error Handling:</strong> Prevents entire script failures by catching and managing errors.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>8. Code Reusability in Eggplant Functional</h2>
+            <p>Code reusability is a critical concept in software development and test automation that focuses on writing code in a way that it can be reused across multiple scripts, test cases, or even different projects. In Eggplant Functional, reusability helps you avoid duplication, reduce maintenance effort, and create a more organized and efficient test suite. Here’s how you can achieve and maximize code reusability in Eggplant Functional:</p>
+
+            <h3>8.1 Creating Reusable Functions</h3>
+            <p>Reusable functions allow you to encapsulate frequently used actions or sequences of actions into a single function. This function can then be called whenever needed, rather than rewriting the same code in multiple places.</p>
+            <p>Example: Let’s say you have a login process that you need to perform in multiple test cases. Instead of writing the login steps repeatedly in each script, you can create a reusable function:</p>
+            <code>
+                to Login(username, password)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "LoginButton.png"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;TypeText username<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;TypeText Tab<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;TypeText password<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "SubmitButton.png"<br>
+                end Login
+            </code>
+            <p>You can then call this Login function in any script where you need to perform a login:</p>
+            <code>Login("testuser", "password123")</code>
+
+            <h3>Benefits:</h3>
+            <ul>
+                <li><strong>Reduced Duplication:</strong> You avoid writing the same login steps in every script.</li>
+                <li><strong>Simplified Maintenance:</strong> If the login process changes (e.g., the button image changes), you only need to update the Login function, not every test script.</li>
+            </ul>
+
+            <h3>8.2 Using Parameters in Functions</h3>
+            <p>Functions can be made even more flexible by using parameters. This allows the same function to be used in different contexts with different data.</p>
+            <p>Example: A function to search for different items on a website:</p>
+            <code>
+                to SearchFor(item)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "SearchIcon.png"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;WaitFor "SearchField.png"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;TypeText item<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "SearchButton.png"<br>
+                end SearchFor
+            </code>
+            <p>You can call this function with different parameters to search for different items:</p>
+            <code>
+                SearchFor("Eggplant")<br>
+                SearchFor("Test Automation")
+            </code>
+
+            <h3>Benefits:</h3>
+            <ul>
+                <li><strong>Flexibility:</strong> One function can handle a variety of inputs, making it more versatile.</li>
+                <li><strong>Scalability:</strong> As your test cases grow, you can easily reuse the same functions with different data.</li>
+            </ul>
+        </section>
+    </div>
+"""
+
+# Saving part 2 of the HTML content
+html_file_part2_path = "/mnt/data/Eggplant_Functional_Guide_Part2.html"
+with open(html_file_part2_path, "w") as file:
+    file.write(html_content_part2)
+
+html_file_part2_path
+
+# Now, creating part 3 of the HTML content
+
+html_content_part3 = """
+    <div class="container">
+        <section>
+            <h3>8.3 Modularizing Test Scripts</h3>
+            <p>Breaking down your test scripts into smaller, modular components is another way to enhance reusability. Instead of writing one large script, divide it into smaller, logical sections that can be reused independently.</p>
+            <p>Example: Consider a test for a shopping cart application:</p>
+            <ul>
+                <li>AddItemToCart</li>
+                <li>RemoveItemFromCart</li>
+                <li>ProceedToCheckout</li>
+                <li>ApplyCoupon</li>
+            </ul>
+            <p>Each of these actions can be encapsulated in its own function:</p>
+            <code>
+                to AddItemToCart(item)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click item<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "AddToCartButton.png"<br>
+                end AddItemToCart<br><br>
+                to RemoveItemFromCart(item)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click item<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "RemoveButton.png"<br>
+                end RemoveItemFromCart<br><br>
+                to ProceedToCheckout()<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "CartIcon.png"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "CheckoutButton.png"<br>
+                end ProceedToCheckout<br><br>
+                to ApplyCoupon(couponCode)<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "CouponField.png"<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;TypeText couponCode<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Click "ApplyButton.png"<br>
+                end ApplyCoupon
+            </code>
+            <p>These functions can be combined in different scripts to create various test scenarios:</p>
+            <code>
+                AddItemToCart("Laptop.png")<br>
+                AddItemToCart("Mouse.png")<br>
+                ApplyCoupon("DISCOUNT10")<br>
+                ProceedToCheckout()
+            </code>
+
+            <h3>Benefits:</h3>
+            <ul>
+                <li>Reuse Across Scenarios: Modular functions can be mixed and matched to create different test scenarios without rewriting code.</li>
+                <li>Improved Clarity: Each function performs a specific task, making your scripts easier to read and understand.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>9. Data-Driven Testing</h2>
+            <p>Data-driven testing is a technique where test scripts are executed with different sets of input data. This approach helps you validate that the application behaves correctly with various data inputs without having to write separate test scripts for each set of data. It significantly enhances test coverage and reduces the effort required to create new tests.</p>
+
+            <h3>9.1 Setting Up Data-Driven Tests</h3>
+            <p>In Eggplant Functional, you can use external data sources, such as CSV files, Excel sheets, or JSON files, to drive your tests.</p>
+            <p>Example: Suppose you have a login test that needs to be run with different sets of usernames and passwords. Instead of writing separate scripts, you can use a CSV file to provide the data:</p>
+            <code>
+                username,password<br>
+                testuser1,password1<br>
+                testuser2,password2<br>
+                testuser3,password3
+            </code>
+
+            <h3>9.2 Implementing Data-Driven Tests</h3>
+            <p>Here’s how you can implement a data-driven test using the CSV file:</p>
+            <code>
+                set userData to file "UserData.csv" as table<br>
+                repeat with each record of userData<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;put record's username into username<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;put record's password into password<br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;Login(username, password)<br><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;if ImageFound("Dashboard.png") then<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log "Login successful for" && username<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;else<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;logError "Login failed for" && username<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;end if<br>
+                end repeat
+            </code>
+
+            <h3>Benefits:</h3>
+            <ul>
+                <li>Enhanced Coverage: You can easily test multiple data sets without writing additional scripts.</li>
+                <li>Scalability: As new data sets are added, the same test script can handle them without modification.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>10. Test Execution and Reporting</h2>
+            <p>Automating the execution of your test suite and generating reports are crucial aspects of test automation. Eggplant Functional provides various ways to execute tests and produce reports that help you understand test results and track progress.</p>
+
+            <h3>10.1 Automating Test Execution</h3>
+            <p>You can schedule or automate the execution of your test suite using continuous integration (CI) tools such as Jenkins. This ensures that your tests are run regularly, such as after every code change or at specific intervals.</p>
+            <p>Example: You can run your test suite from the command line, which can then be integrated into a CI pipeline:</p>
+            <code>eggplant --suite "MyTestSuite.suite"</code>
+            <p>This command can be scheduled or triggered by your CI tool.</p>
+
+            <h3>10.2 Generating Test Reports</h3>
+            <p>Eggplant Functional automatically generates detailed logs and reports for each test run. These reports can be customized and analyzed to track the success rate, identify failures, and monitor the overall health of your application.</p>
+
+            <h3>Key Points:</h3>
+            <ul>
+                <li>HTML Reports: Eggplant provides HTML reports that are easy to share and review.</li>
+                <li>Log Files: Detailed log files contain step-by-step results of the test execution, helping you debug issues.</li>
+            </ul>
+
+            <h3>Benefits:</h3>
+            <ul>
+                <li>Continuous Feedback: Automated execution provides quick feedback on the health of your application.</li>
+                <li>Accountability: Reports and logs offer detailed records of test execution, which is useful for auditing and troubleshooting.</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>Eggplant Functional Guide &copy; 2024. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>
+"""
+
+# Saving part 3 of the HTML content
+html_file_part3_path = "/mnt/data/Eggplant_Functional_Guide_Part3.html"
+with open(html_file_part3_path, "w") as file:
+    file.write(html_content_part3)
+
+html_file_part3_path
+
+
