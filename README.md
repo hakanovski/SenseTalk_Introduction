@@ -15,3 +15,41 @@ Please feel free to contribute and add your knowledge as well.
 That’s all for now.
 
 H A ❌ A N
+
+
+
+
+
+// 1. Google Chrome'u Açın
+DoubleClick "GoogleChrome_DesktopIcon"  // Masaüstündeki Chrome ikonuna çift tıklayın
+WaitFor 10, "ChromeOpenedImage"  // Chrome'un tamamen açılmasını bekleyin
+
+// 2. Adres Çubuğuna Tıklayın ve Yeni URL'yi Girin
+Click "va_insider_url"  // Chrome'un adres çubuğuna tıklayın
+TypeText "https://www1.dfhost.com/va-fsc-gov/Default.aspx?menu=RegressionTestPage", Return  // Yeni URL'yi girin ve Enter'a basın
+
+// 3. VAPIVCard ile Giriş Yapın
+Click "SignInWithVAPIVCard"  // Giriş yap butonuna tıklayın
+WaitFor 10, "OK_Certificate_Info"  // Authentication için bekleyin
+Click {Image:"OK_Certificate_Info", WaitFor:10}  // Sertifika onay butonuna tıklayın
+
+// 4. PIN Kodu Sorma Durumunu Kontrol Et ve Giriş Yap
+// PIN kodu istenip istenmediğini kontrol etmek için bir bekleme döngüsü
+put 0 into attemptCounter
+repeat until ImageFound("PIN_Login_Agility") or attemptCounter is 3
+    if ImageFound("PIN_Login_Agility") then
+        log "PIN prompt detected. Entering PIN."
+        TypeText "270607", Enter  // PIN kodunu girin ve Enter'a basın
+        exit repeat
+    else
+        wait 5  // Bekle ve tekrar kontrol et
+        add 1 to attemptCounter
+    end if
+end repeat
+
+if attemptCounter is 3 then
+    log "PIN prompt was not found after several attempts. Proceeding without PIN entry."
+end if
+
+// 5. Ekstra Kontroller ve İşlemler
+// Burada ek işlemleri devam ettirebilirsiniz
